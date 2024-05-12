@@ -1,8 +1,10 @@
 package com.ajaycodes.employeeservice.exception.handler;
 
 import com.ajaycodes.employeeservice.exception.EmployeeNotFoundException;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,5 +26,12 @@ public class EmployeeGlobalExceptionHandler extends ResponseEntityExceptionHandl
     public final ResponseEntity<Object> handleEmployeeNotFoundException(EmployeeNotFoundException ex, WebRequest request) {
         EmployeeExceptionResponse exceptionResponse = new EmployeeExceptionResponse(ex.getMessage(), request.getDescription(false), LocalDateTime.now());
         return new ResponseEntity<>(exceptionResponse, HttpStatusCode.valueOf(404));
+    }
+
+    @Override
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+        EmployeeExceptionResponse exceptionResponse = new EmployeeExceptionResponse("Invalid Input",
+                ex.getBindingResult().toString(), LocalDateTime.now());
+        return new ResponseEntity<>(exceptionResponse, HttpStatusCode.valueOf(400));
     }
 }

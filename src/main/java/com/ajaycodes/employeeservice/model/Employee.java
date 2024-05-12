@@ -1,16 +1,20 @@
 package com.ajaycodes.employeeservice.model;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Size;
+
 public class Employee {
     private int employeeId;
+    @Size(min = 3, max = 5,message = "Invalid chars for Name")
     private String name;
+    @Email
+    private String email;
 
     public Employee(int employeeId, String name, String email) {
         this.employeeId = employeeId;
         this.name = name;
         this.email = email;
     }
-
-    private String email;
 
     public int getEmployeeId() {
         return employeeId;
