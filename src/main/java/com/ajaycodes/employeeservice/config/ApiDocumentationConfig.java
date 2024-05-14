@@ -11,7 +11,7 @@ import io.swagger.v3.oas.annotations.info.License;
         contact = @Contact(name = "Daniel",
                 url = "https://www.ajaycodes.com",
                 email = "support@mail.com"),
-        license = @License(name = "Employee License Version 1.0", url = "http://www.ajaycodes.com/license"),
+        license = @License(name = "Employee License Version 1.0", url = "https://www.ajaycodes.com/license"),
         version = "3.0"))
 public class ApiDocumentationConfig {
 }

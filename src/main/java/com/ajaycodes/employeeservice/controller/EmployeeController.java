@@ -49,7 +49,7 @@ public class EmployeeController {
         URI uri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("{employeeId}")
-                .buildAndExpand(savedEmployee.getEmployeeId()).toUri();
+                .buildAndExpand(savedEmployee.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
 

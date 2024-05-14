@@ -23,11 +23,11 @@ public class EmployeeDao {
     }
 
     public Employee getEmployeeById(int empId) {
-        return employees.stream().filter(employee -> employee.getEmployeeId() == empId).findFirst().orElse(null);
+        return employees.stream().filter(employee -> employee.getId() == empId).findFirst().orElse(null);
     }
 
     public Employee saveEmployee(Employee employee) {
-        employee.setEmployeeId(employees.size()+1);
+        employee.setId(employees.size()+1);
         employees.add(employee);
         return employee;
     }
@@ -36,7 +36,7 @@ public class EmployeeDao {
         Iterator<Employee> employeeIterator = employees.iterator();
         while (employeeIterator.hasNext()) {
             Employee employee = employeeIterator.next();
-            if (employee.getEmployeeId() == empId) {
+            if (employee.getId() == empId) {
                 employeeIterator.remove();
                 return employee;
             }
